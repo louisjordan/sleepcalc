@@ -46,7 +46,7 @@ function formatTime(time) {
 function calculateWakeIntervals(time, forward = true) {
   let intervals = [];
 
-  for (var i = 1; i <= 7; i++) {
+  for (var i = 1; i <= 6; i++) {
     let interval = 1000 * 60 * 90 * i;
     intervals.push(formatTime(forward ? time + interval : time - interval));
   }
