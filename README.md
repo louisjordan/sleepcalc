@@ -1,16 +1,5 @@
-> :crescent_moon: a sleep calculator
+> :crescent_moon: a sleep cycle calculator
 
-## Build Setup
+Works by counting backwards in sleep cycles of 90 minutes.
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Results may vary.
