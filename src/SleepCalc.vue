@@ -31,7 +31,7 @@
 </template>
 
 <script>
-const formatTime = function (time) {
+function formatTime(time) {
   time = new Date(time);
 
   let hours = time.getHours();
@@ -41,9 +41,9 @@ const formatTime = function (time) {
   minutes = minutes > 9 ? minutes : `0${minutes}`;
 
   return `${hours}:${minutes}`
-};
+}
 
-const calculateWakeIntervals = function (time, forward = true) {
+function calculateWakeIntervals(time, forward = true) {
   let intervals = [];
 
   for (var i = 1; i <= 7; i++) {
@@ -52,13 +52,15 @@ const calculateWakeIntervals = function (time, forward = true) {
   }
 
   return forward ? intervals.reverse() : intervals;
-};
+}
 
-const padLeft = function (input, maxLength, padCharacter) {
+function padLeft(input, maxLength, padCharacter) {
   input = String(input);
-  const paddingLength = maxLength - input.length;
-  const padding = new Array(paddingLength).fill(padCharacter);
-  return padding.join('') + input;
+  if (input) {
+    const paddingLength = maxLength - input.length;
+    const padding = new Array(paddingLength).fill(padCharacter);
+    return padding.join('') + input;
+  }
 }
 
 export default {
@@ -75,26 +77,25 @@ export default {
     const hours = Number(this.hours);
     const minutes = Number(this.minutes);
 
-    if (minutes === -15) {
+    if (minutes <= -1) {
       this.minutes = 45;
       this.hours = hours - 1;
-    } else if (minutes === 60) {
+    } else if (minutes >= 60) {
       this.minutes = 0;
       this.hours = hours + 1;
     }
 
-    if (this.hours == -1) {
+    if (this.hours <= -1) {
       this.hours = 23;
-    } else if (this.hours == 24) {
+    } else if (this.hours >= 24) {
       this.hours = 0;
     }
 
-    this.hours = padLeft(this.hours, 2, '0');
     this.minutes = padLeft(this.minutes, 2, '0');
   },
   computed: {
     times() {
-      const currentTime = new Date(1970, 0, 1, this.hours, this.minutes).getTime();
+      const currentTime = new Date(1970, 0, 1, this.hours, this.minutes || 0).getTime();
       return calculateWakeIntervals(currentTime, this.mode === 'fallasleepat');
     }
   },
@@ -111,7 +112,7 @@ export default {
 <style lang="scss">
 .container {
   text-align: center;
-  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.1);
   padding: 32px;
   color: white;
   opacity: 0.8;
@@ -124,6 +125,7 @@ input {
   border: 0;
   outline: 0;
   border-bottom: 2px solid white;
+  border-radius: 0;
 }
 
 button {
