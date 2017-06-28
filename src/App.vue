@@ -3,6 +3,13 @@
     <div class="page-content">
       <sleep-calc class="sleep-calc"></sleep-calc>
     </div>
+    <footer>
+      <div class="links">
+        <a href="http://github.com/louisjordan/sleepcalc">
+          <span class="github"></span>
+        </a>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -82,6 +89,35 @@ button {
   max-width: 400px;
   min-height: 350px;
   margin: 5vw;
+}
+
+footer {
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+
+  .links {
+    width: 300px;
+    height: 100%;
+    text-align: center;
+
+    .github {
+      background: url('assets/github-mark.png');
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      opacity: 0.2;
+      cursor: pointer;
+      transition: .3s ease;
+    }
+
+    .github:hover {
+      opacity: 0.4;
+    }
+  }
 }
 
 a {

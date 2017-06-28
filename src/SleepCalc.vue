@@ -91,7 +91,7 @@ export default {
       this.hours = 0;
     }
 
-    this.minutes = padLeft(this.minutes, 2, '0');
+    this.minutes = String(this.minutes).length === 1 ? 0 + String(this.minutes) : this.minutes;
   },
   computed: {
     times() {
