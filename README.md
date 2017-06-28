@@ -1,6 +1,4 @@
-# sleepcalc
-
-> A slee
+> :crescent_moon: a sleep calculator
 
 ## Build Setup
 
