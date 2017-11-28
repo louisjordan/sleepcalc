@@ -40,7 +40,7 @@ function formatTime(time) {
   let minutes = time.getMinutes();
   minutes = minutes > 9 ? minutes : `0${minutes}`;
 
-  return `${hours}:${minutes}`
+  return `${hours}:${minutes}`;
 }
 
 function calculateWakeIntervals(time, forward = true) {
@@ -51,7 +51,7 @@ function calculateWakeIntervals(time, forward = true) {
     intervals.push(formatTime(forward ? time + interval : time - interval));
   }
 
-  return forward ? intervals.reverse() : intervals;
+  return forward ? intervals : intervals.reverse();
 }
 
 function padLeft(input, maxLength, padCharacter) {
@@ -71,7 +71,7 @@ export default {
       hours: '08',
       minutes: '00',
       time: ''
-    }
+    };
   },
   updated() {
     const hours = Number(this.hours);
@@ -106,7 +106,7 @@ export default {
       this.minutes = now[1];
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
